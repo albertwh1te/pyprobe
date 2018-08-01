@@ -20,14 +20,14 @@ class ServerInfo(object):
 
     def __init__(self):
         self.data = {}
-        set_static_data()
+        self.set_static_data()
 
-    def set_static_data():
+    def set_static_data(self):
         """
         set static data for onece
         """
         self.data["cpu_numbers"] = psutil.cpu_count()
-        self.data["cpu_freq"] = psutil.cpu_freq(percpu=False)[0].max
+        self.data["cpu_freq"] = psutil.cpu_freq(percpu=False)
 
     ###
     # TODO: add more info
@@ -73,6 +73,7 @@ class chatroom(web.View):
                         await self.brocast(info.data)
 
             elif msg.type == WSMsgType.ERROR:
+                app.connections.remove(ws)
                 log('ws connection closed with exception %s' %
                     ws.exception())
 
