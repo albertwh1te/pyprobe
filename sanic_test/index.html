@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PyProbe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="static/materialize.min.css" />
+</head>
+
+<body>
+    <div class="card blue-grey lighten-4">
+        <div class="flow-text center">Server Status</div>
+        <div class="row">
+            <div class="col s4">
+                <!-- Promo Content 1 goes here -->
+                <div class="card blue-grey lighten-2">
+                    <canvas id="cpu-gauge-id"></canvas>
+                    <center id="cpu-details-id">cpu details
+                    </center>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="card blue-grey lighten-2">
+                    <canvas id="mem-gauge-id"></canvas>
+                    <center id="mem-details-id">memory details
+                    </center>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="card blue-grey lighten-2">
+                    <canvas id="swap-gauge-id"></canvas>
+                    <center id="swap-details-id">swap details
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="network-info-id">
+    </section>
+
+    <section id="server-info-id">
+    </section>
+
+
+
+    <footer class="page-footer blue-grey">
+        <div class="footer-copyright blue-grey">
+            <div class="container">
+                <span>
+                    Generator
+                    <a class="grey-text text-lighten-4" href="https://github.com/MarkWh1te/pyprobe">PyProbe</a>
+                </span>
+                <span>
+                    / Author
+                    <a class="grey-text text-lighten-4 " href="https://markwh1te.com">MarkWh1te</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="static/gauge.min.js"></script>
+    <script src="static/main.js"></script>
+</body>
+
+</html>
