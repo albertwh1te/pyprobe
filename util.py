@@ -1,28 +1,32 @@
-from aiohttp import web
+
+from datetime import datetime, timedelta
 
 
 def log(*args):
     print(args)
 
 
-def redirect(request, router_name, **kwargs):
-    """ Redirect to given URL name """
-    url = request.app.router[router_name].url_for()
-    return web.HTTPFound(url)
+def bytes2human(n):
+    """
+    >>> bytes2human(10000)
+    '9.8 K'
+    >>> bytes2human(100001221)
+    '95.4 M'
+    """
+    symbols = ('K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y')
+    prefix = {}
+    for i, s in enumerate(symbols):
+        prefix[s] = 1 << (i + 1) * 10
+    for s in reversed(symbols):
+        if n >= prefix[s]:
+            value = float(n) / prefix[s]
+            return '%.2f%s' % (value, s)
+    return '%.2fB' % (n)
 
 
-def login_required(func):
-    """ Only allowed given function """
-    async def _warpper(request, *args, **kwargs):
-        if request.user is None:
-            return redirect(request, 'login')
-        return await func(request, *args, **kwargs)
-    return _warpper
-
-
-async def get_object_or_404(request, model, **kwargs):
-    """ Get object or raise HttpNotFound """
-    try:
-        return await request.app.objects.get(model, **kwargs)
-    except model.DoesNotExist:
-        raise web.HTTPNotFound()
+def seconds2human(n):
+    """
+    >>> seconds2human(666)
+    '0:11:06'
+    """
+    return str(timedelta(seconds=n))
