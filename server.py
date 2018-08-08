@@ -43,7 +43,6 @@ class ServerInfo(object):
         self.data["pyversion"] = platform.python_version()
         self.data["processor"] = platform.processor()
         self.data["script_path"] = os.getcwd()
-        # self.data["language"] = locale.getdefaultlocale()[0]
 
     def update(self):
         """
@@ -56,7 +55,6 @@ class ServerInfo(object):
             self.update_disk_data()
             self.update_network_data()
             self.update_time()
-            # self.update_basic_info()
 
     def update_cpu_data(self):
         cpu_percent = psutil.cpu_percent(interval=None)
