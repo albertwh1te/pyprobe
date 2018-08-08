@@ -1,13 +1,22 @@
 # pyprobe
 Display and monitor your servers statistics
 
-![Alt Text](http://7xq2dq.com1.z0.glb.clouddn.com/pyprobe.gifpyprobe.gif)
+| **`Demo`** |
 
-| **`installation`** |
+![](https://i.loli.net/2018/08/08/5b6b04de7b525.gif)
+
+[online demo](https://status.markwh1te.com)
+
+
+| **`Usage`** |
 ```
 virtualenv pyprobe_env -p python3
-source pyprobe_env/bin/activate
+source pyprobe_env/bin/activate && cd pyprobe
 pip install -r requirements.txt
-python server.py &
+python server.py
 ```
 open http://localhost:8000/
+
+| **`LICENSE`** |
+
+[GPLv3](LICENSE)
