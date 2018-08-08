@@ -6,7 +6,7 @@ const rewrite = (selector, html) => {
     ele.innerHTML = ""
     ele.insertAdjacentHTML("beforeend", html)
 }
-// let's  rock
+
 const info = (gauge) => {
     const ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
     try {
@@ -108,7 +108,7 @@ const update_server = (info) => {
             </div>
             <div class="col s4">
                 <div class="card blue-grey lighten-2 ">
-                <center>server OS : ${info["platform"]}</center>
+                <center>processor : ${info["processor"]}</center>
             </div>
                 <div class="card blue-grey lighten-2 ">
                 <center>Python version : ${info["pyversion"]}</center>
@@ -119,6 +119,12 @@ const update_server = (info) => {
                     <center>script path: ${info["script_path"]}</center>
                 </div>
             </div>
+            <div class="col s12">
+                <div class="card blue-grey lighten-2 ">
+                    <center>server OS : ${info["platform"]}</center>
+                </div>
+            </div>
+
             <div class="col s6">
                 <div class="card blue-grey lighten-2 ">
                 <center>server time : ${info["server_time"]}</center>

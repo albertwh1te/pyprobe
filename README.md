@@ -1,7 +1,7 @@
 # pyprobe
 Display and monitor your servers statistics
 
-![Alt Text](http://7xq2dq.com1.z0.glb.clouddn.com/pyprobe.gif)
+![Alt Text](http://7xq2dq.com1.z0.glb.clouddn.com/pyprobe.gifpyprobe.gif)
 
 | **`installation`** |
 ```

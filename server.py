@@ -4,7 +4,9 @@ import time
 import datetime
 import socket
 import platform
+import locale
 import os
+
 import psutil
 from sanic import Sanic, response
 
@@ -41,6 +43,7 @@ class ServerInfo(object):
         self.data["pyversion"] = platform.python_version()
         self.data["processor"] = platform.processor()
         self.data["script_path"] = os.getcwd()
+        # self.data["language"] = locale.getdefaultlocale()[0]
 
     def update(self):
         """
