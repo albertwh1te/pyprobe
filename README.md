@@ -10,10 +10,8 @@ Display and monitor your servers statistics
 
 | **`Usage`** |
 ```
-virtualenv pyprobe_env -p python3
-source pyprobe_env/bin/activate && cd pyprobe
-pip install -r requirements.txt
-python server.py
+git clone git@github.com:MarkWh1te/pyprobe.git
+sh start.sh
 ```
 open http://localhost:8000/
 
