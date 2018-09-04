@@ -10,8 +10,8 @@ Display and monitor your servers statistics
 
 | **`Usage`** |
 ```
-git clone git@github.com:MarkWh1te/pyprobe.git
-sh start.sh
+git clone git@github.com:MarkWh1te/pyprobe.git 
+cd pyprobe && sh start.sh
 ```
 open http://localhost:8000/
 
