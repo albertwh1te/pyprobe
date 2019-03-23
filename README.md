@@ -18,3 +18,7 @@ open http://localhost:8000/
 | **`LICENSE`** |
 
 [GPLv3](LICENSE)
+
+| **`TODO`** |
+
+- [] docker support
