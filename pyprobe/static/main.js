@@ -11,8 +11,8 @@ const info = (gauge) => {
     const ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
     try {
         const ws = new WebSocket(
-            ws_scheme + '://' + window.location.host
-            + "/ws/"
+            ws_scheme + '://' + window.location.host +
+            "/ws/"
         )
         ws.onopen = () => ws.send('hello');
 
@@ -25,15 +25,15 @@ const info = (gauge) => {
             leave_log(e)
         }
     } catch (error) {
+        log(error)
     }
 }
 
 const render = (message, gauges) => {
     const info = JSON.parse(message.data)
-    update_network(info)
     update_server(info)
     update_gauges(info, gauges)
-    update_status_detail(info)
+    // update_status_detail(info)
 }
 
 const update_status_detail = (info) => {
@@ -45,102 +45,24 @@ const update_status_detail = (info) => {
     rewrite("#swap-details-id", swap_template)
 }
 
-const update_network = (info) => {
-    let info_template = `
-    <div class="card blue-grey lighten-4">
-        <div class="flow-text center">Network Status</div>
-        <div class="row">
-            <div class="col s4">
-            <div class="card blue-grey lighten-2 ">
-                <center>network sent : ${info["net_sent"]}</center>
-            </div>
-            <div class="card blue-grey lighten-2 ">
-                <center>upstream rate : ${info["net_speed_up"]}</center>
-            </div>
-            </div>
-
-            <div class="col s4">
-            <div class="card blue-grey lighten-2 ">
-                <center>network received : ${info["net_recv"]}</center>
-            </div>
-            <div class="card blue-grey lighten-2 ">
-                <center>downstream rate : ${info["net_speed_up"]}</center>
-            </div>
-            </div>
-
-           <div class="col s4">
-            <div class="card blue-grey lighten-2 ">
-                <center>packet sent : ${info["pack_sent"]}</center>
-            </div>
-            <div class="card blue-grey lighten-2 ">
-                <center>packet received : ${info["pack_recv"]}</center>
-            </div>
-
-            </div>
-        </div>
-    </div>
-    `
-    rewrite("#network-info-id", info_template)
-}
 
 const update_server = (info) => {
-    let info_template = `
-    <div class="card blue-grey lighten-4">
-        <div class="flow-text center">Server Information</div>
-        <div class="row">
-            <div class="col s4">
-            <div class="card blue-grey lighten-2 ">
-                <center>host: ${info["host"]}</center>
-            </div>
-            <div class="card blue-grey lighten-2 ">
-                <center>hostname: ${info["hostname"]}</center>
-            </div>
-            </div>
-            <div class="col s4">
-                <div class="card blue-grey lighten-2 ">
-                    <center>disk free : ${info["disk_free"]}</center>
-                </div>
-                <div class="card blue-grey lighten-2 ">
-                    <center>disk total : ${info["disk_total"]}</center>
-                </div>
-
-
-            </div>
-            <div class="col s4">
-                <div class="card blue-grey lighten-2 ">
-                <center>processor : ${info["processor"]}</center>
-            </div>
-                <div class="card blue-grey lighten-2 ">
-                <center>Python version : ${info["pyversion"]}</center>
-            </div>
-            </div>
-            <div class="col s12">
-                <div class="card blue-grey lighten-2 ">
-                    <center>script path: ${info["script_path"]}</center>
-                </div>
-            </div>
-            <div class="col s12">
-                <div class="card blue-grey lighten-2 ">
-                    <center>server OS : ${info["platform"]}</center>
-                </div>
-            </div>
-
-            <div class="col s6">
-                <div class="card blue-grey lighten-2 ">
-                <center>server time : ${info["server_time"]}</center>
-            </div>
-            </div>
-            <div class="col s6">
-                <div class="card blue-grey lighten-2 ">
-                <center>server uptime : ${info["server_uptime"]}</center>
-            </div>
-            </div>
-
-
-        </div>
-    </div>
-    `
-    rewrite("#server-info-id", info_template)
+    rewrite("#disk_free_id", info["disk_free"])
+    rewrite("#processor_id", info["processor_brand"])
+    rewrite("#processor_number_id", info["cpu_numbers"])
+    rewrite("#l1_data_cache_size_id", info["l1_data_cache_size"])
+    rewrite("#l1_instruction_cache_size_id", info["l1_instruction_cache_size"])
+    rewrite("#l2_cache_size_id", info["l2_cache_size"])
+    rewrite("#l3_cache_size_id", info["l3_cache_size"])
+    rewrite("#cpu_user_id", info["cpu_user"])
+    rewrite("#cpu_system_id", info["cpu_system"])
+    rewrite("#cpu_idle_id", info["cpu_idle"])
+    rewrite("#disk_free_id", info["disk_free"])
+    rewrite("#disk_total_id", info["disk_total"])
+    rewrite("#disk_used_id", info["disk_used"])
+    rewrite("#disk_percent_id", info["disk_percent"])
+    rewrite("#partitions_num_id", info["partitions_num"])
+    rewrite("#type_of_file_system_id", info["type_of_file_system"])
 }
 
 const update_gauges = (info, gauges) => {
@@ -170,13 +92,11 @@ const get_swap_gauge = () => {
         units: "%",
         valueDec: 2,
         valueInt: 2,
-        highlights: [
-            {
-                "from": 80,
-                "to": 100,
-                "color": "rgba(244,67,54)"
-            }
-        ]
+        highlights: [{
+            "from": 90,
+            "to": 100,
+            "color": "rgba(244,67,54)"
+        }]
     })
     return gauge
 }
@@ -184,18 +104,16 @@ const get_swap_gauge = () => {
 const get_cpu_gauge = () => {
     let gauge = new RadialGauge({
         renderTo: 'cpu-gauge-id',
-        value: 50,
+        value: 0,
         title: "CPU",
         units: "%",
         valueDec: 2,
         valueInt: 2,
-        highlights: [
-            {
-                "from": 80,
-                "to": 100,
-                "color": "rgba(244,67,54)"
-            }
-        ]
+        highlights: [{
+            "from": 90,
+            "to": 100,
+            "color": "rgba(244,67,54)"
+        }]
     })
     return gauge
 }
@@ -208,13 +126,11 @@ const get_mem_gauge = () => {
         valueDec: 2,
         valueInt: 2,
         units: "%",
-        highlights: [
-            {
-                "from": 80,
-                "to": 100,
-                "color": "rgba(244,67,54)"
-            }
-        ]
+        highlights: [{
+            "from": 90,
+            "to": 100,
+            "color": "rgba(244,67,54)"
+        }]
     })
     return gauge
 }

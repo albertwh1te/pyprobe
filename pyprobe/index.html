@@ -11,55 +11,246 @@
 </head>
 
 <body>
-    <div class="card blue-grey lighten-4">
-        <div class="flow-text center">Server Status</div>
-        <div class="row">
-            <div class="col s4">
-                <!-- Promo Content 1 goes here -->
-                <div class="card blue-grey lighten-2">
-                    <canvas id="cpu-gauge-id"></canvas>
-                    <center id="cpu-details-id">cpu details
-                    </center>
+    <div class="container">
+        <div class="card blue-grey lighten-4">
+            <div class="flow-text center">Server Status</div>
+            <div class="row">
+                <div class="col s4">
+                    <!-- Promo Content 1 goes here -->
+                    <div class="card blue-grey lighten-2">
+                        <canvas id="cpu-gauge-id"></canvas>
+                        </center>
+                    </div>
                 </div>
-            </div>
-            <div class="col s4">
-                <div class="card blue-grey lighten-2">
-                    <canvas id="mem-gauge-id"></canvas>
-                    <center id="mem-details-id">memory details
-                    </center>
+                <div class="col s4">
+                    <div class="card blue-grey lighten-2">
+                        <canvas id="mem-gauge-id"></canvas>
+                        </center>
+                    </div>
                 </div>
-            </div>
-            <div class="col s4">
-                <div class="card blue-grey lighten-2">
-                    <canvas id="swap-gauge-id"></canvas>
-                    <center id="swap-details-id">swap details
-                    </center>
+                <div class="col s4">
+                    <div class="card blue-grey lighten-2">
+                        <canvas id="swap-gauge-id"></canvas>
+                        </center>
+                    </div>
                 </div>
             </div>
         </div>
+        <section id="cpu-info-id">
+            <div class="card blue-grey lighten-4">
+                <div class="flow-text center">CPU Information</div>
+                <div class="row">
+                    <div class="col s4">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>User time :
+                                <span id="cpu_user_id">
+                                    0
+                                </span> %
+                            </center>
+                        </div>
+
+                        <div class="card blue-grey lighten-2 ">
+                            <center>processor :
+                                <span id="processor_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>processor number:
+                                <span id="processor_number_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+
+                    </div>
+                    <div class="col s4">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>System time :
+                                <span id="cpu_system_id">
+                                    0
+                                </span> %
+                            </center>
+                        </div>
+
+                        <div class="card blue-grey lighten-2 ">
+                            <center>L1 instruction cache size:
+                                <span id="l1_instruction_cache_size_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>L1 data cache size:
+                                <span id="l1_data_cache_size_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="col s4">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>Idle time :
+                                <span id="cpu_idle_id">
+                                    0
+                                </span> %
+                            </center>
+                        </div>
+
+                        <div class="card blue-grey lighten-2 ">
+                            <center>L2 cache size:
+                                <span id="l2_cache_size_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>L3 cache size:
+                                <span id="l3_cache_size_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section id="disk-info-id">
+            <div class="card blue-grey lighten-4">
+                <div class="flow-text center">Disk Information</div>
+                <div class="row">
+                    <div class="col s4">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>Disk total space :
+                                <span id="disk_total_id">
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>Disk used percent :
+                                <span id="disk_percent_id">
+                                </span>%
+                            </center>
+                        </div>
+                    </div>
+                    <div class="col s4">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>Disk used space :
+                                <span id="disk_used_id">
+                                </span>
+                            </center>
+                        </div>
+
+                        <div class="card blue-grey lighten-2 ">
+                            <center>Disk partitions number:
+                                <span id="partitions_num_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="col s4">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>Disk free space :
+                                <span id="disk_free_id">
+                                </span>
+                            </center>
+                        </div>
+
+                        <div class="card blue-grey lighten-2 ">
+                            <center>type of file system :
+                                <span id="type_of_file_system_id">
+                                </span>
+                            </center>
+                        </div>
+
+                    </div>
+                </div>
+
+        </section>
+
+        <section id="memory-info-id">
+            <div class="card blue-grey lighten-4">
+                <div class="flow-text center">Memory Information</div>
+                <div class="row">
+                    <div class="col s4">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>host:
+                                <span id="host_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>hostname:
+                                <span id="hostname_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="col s4">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>disk free :
+                                <span id="disk_free_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>disk total :
+                                <span id="disk_total_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="col s4">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>processor :
+                                <span id="processor_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>processor number:
+                                <span id="processor_number_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>server time : ${info["server_time"]}</center>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>server uptime : ${info["server_uptime"]}</center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="page-footer blue-grey">
+            <div class="footer-copyright blue-grey">
+                <div class="container">
+                    <span>
+                        Generator
+                        <a class="grey-text text-lighten-4" href="https://github.com/MarkWh1te/pyprobe">PyProbe</a>
+                    </span>
+                    <span>
+                        / Author
+                        <a class="grey-text text-lighten-4 " href="https://markwh1te.com">MarkWh1te</a>
+                    </span>
+                </div>
+            </div>
+        </footer>
     </div>
-    <section id="network-info-id">
-    </section>
-
-    <section id="server-info-id">
-    </section>
-
-
-
-    <footer class="page-footer blue-grey">
-        <div class="footer-copyright blue-grey">
-            <div class="container">
-                <span>
-                    Generator
-                    <a class="grey-text text-lighten-4" href="https://github.com/MarkWh1te/pyprobe">PyProbe</a>
-                </span>
-                <span>
-                    / Author
-                    <a class="grey-text text-lighten-4 " href="https://markwh1te.com">MarkWh1te</a>
-                </span>
-            </div>
-        </div>
-    </footer>
     <script type="text/javascript" src="static/gauge.min.js"></script>
     <script src="static/main.js"></script>
 </body>

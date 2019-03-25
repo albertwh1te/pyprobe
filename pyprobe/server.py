@@ -3,8 +3,8 @@ import json
 import time
 import datetime
 import socket
-import platform
 import locale
+import cpuinfo
 import os
 
 import psutil
@@ -39,10 +39,14 @@ class ServerInfo(object):
         self.data["cpu_freq"] = psutil.cpu_freq(percpu=False)
         self.data["hostname"] = socket.gethostname()
         self.data["host"] = socket.gethostbyname(self.data["hostname"])
-        self.data["platform"] = platform.platform()
-        self.data["pyversion"] = platform.python_version()
-        self.data["processor"] = platform.processor()
-        self.data["script_path"] = os.getcwd()
+        cpu_info = cpuinfo.get_cpu_info()
+        self.data["processor_brand"] = cpu_info['brand']
+        self.data["hz_advertised"] = cpu_info["hz_advertised"]
+        self.data["l1_data_cache_size"] = cpu_info["l1_data_cache_size"]
+        self.data["l1_instruction_cache_size"] = cpu_info[
+            "l1_instruction_cache_size"]
+        self.data["l2_cache_size"] = cpu_info["l2_cache_size"]
+        self.data["l3_cache_size"] = cpu_info["l3_cache_size"]
 
     def update(self):
         """
@@ -69,6 +73,14 @@ class ServerInfo(object):
         self.data["total_mem"] = bytes2human(mem.total)
         self.data["avaliabale_mem"] = bytes2human(mem.available)
         self.data["used_mem"] = bytes2human(mem.used)
+        # shared (Linux, BSD): memory that may be simultaneously accessed by multiple processes.
+        self.data["mem_shared"] = bytes2human(mem.shared)
+        # cached (Linux, BSD): cache for various things.
+        self.data["mem_cached"] = bytes2human(mem.cached)
+        # active (UNIX): memory currently in use or very recently used, and so it is in RAM.
+        self.data["mem_active"] = bytes2human(mem.active)
+        # inactive (UNIX): memory that is marked as not used.
+        self.data["mem_inactive"] = bytes2human(mem.inactive)
         self.data["mem_percent"] = mem.percent
         swap = psutil.swap_memory()
         self.data["total_swap"] = bytes2human(swap.total)
@@ -80,6 +92,10 @@ class ServerInfo(object):
         disk = psutil.disk_usage('/')
         self.data["disk_total"] = bytes2human(disk.total)
         self.data["disk_free"] = bytes2human(disk.free)
+        self.data["disk_used"] = bytes2human(disk.used)
+        self.data["disk_percent"] = disk.percent
+        self.data["partitions_num"] = len(psutil.disk_partitions())
+        self.data["type_of_file_system"] = psutil.disk_partitions()[0].fstype
 
     def update_network_data(self):
         net = psutil.net_io_counters()
