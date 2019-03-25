@@ -87,18 +87,18 @@ class ServerInfo(object):
         self.data["net_recv"] = bytes2human(net.bytes_recv)
         self.data["pack_sent"] = net.packets_sent
         self.data["pack_recv"] = net.packets_recv
-        self.data["net_speed_up"] = bytes2human(
-            net.bytes_sent-self.last_up_down[0])
-        self.data["net_speed_down"] = bytes2human(
-            net.bytes_recv-self.last_up_down[1])
+        self.data["net_speed_up"] = bytes2human(net.bytes_sent -
+                                                self.last_up_down[0])
+        self.data["net_speed_down"] = bytes2human(net.bytes_recv -
+                                                  self.last_up_down[1])
         self.last_up_down = (net.bytes_sent, net.bytes_recv)
 
     def update_time(self):
         self._updatetime = time.time()
         self.data["server_time"] = datetime.datetime.now().strftime(
             "%Y-%m-%d %H:%M:%S")
-        self.data["server_uptime"] = seconds2human(
-            self._updatetime-psutil.boot_time())
+        self.data["server_uptime"] = seconds2human(self._updatetime -
+                                                   psutil.boot_time())
 
 
 @app.route("/")
@@ -114,5 +114,6 @@ async def info(request, ws):
         await ws.send(json.dumps(info.data))
         await asyncio.sleep(1)
 
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+    app.run(host="0.0.0.0", port=8000, workers=4)
