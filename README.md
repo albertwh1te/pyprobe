@@ -1,18 +1,19 @@
 # pyprobe
+
 Display and monitor your servers statistics
 
 | **`Demo`** |
 
-![](https://i.loli.net/2018/08/08/5b6b04de7b525.gif)
+![demo gif](https://i.loli.net/2018/08/08/5b6b04de7b525.gif)
 
 [online demo](https://status.markwh1te.com)
 
-
 | **`Usage`** |
+
+```Bash
+git clone git@github.com:MarkWh1te/pyprobe.git && cd pyprobe && docker-compose up
 ```
-git clone git@github.com:MarkWh1te/pyprobe.git 
-cd pyprobe && docker-compose up
-```
+
 open http://localhost:8000/
 
 | **`LICENSE`** |
