@@ -11,14 +11,10 @@ Display and monitor your servers statistics
 | **`Usage`** |
 ```
 git clone git@github.com:MarkWh1te/pyprobe.git 
-cd pyprobe && sh start.sh
+cd pyprobe && docker-compose up
 ```
 open http://localhost:8000/
 
 | **`LICENSE`** |
 
 [GPLv3](LICENSE)
-
-| **`TODO`** |
-
-- [] docker support
