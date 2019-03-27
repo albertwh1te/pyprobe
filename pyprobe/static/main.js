@@ -63,6 +63,23 @@ const update_server = (info) => {
     rewrite("#disk_percent_id", info["disk_percent"])
     rewrite("#partitions_num_id", info["partitions_num"])
     rewrite("#type_of_file_system_id", info["type_of_file_system"])
+    rewrite("#total_mem_id", info["total_mem"])
+    rewrite("#used_mem_id", info["used_mem"])
+    rewrite("#free_mem_id", info["free_mem"])
+    rewrite("#mem_shared_id", info["mem_shared"])
+    rewrite("#available_mem_id", info["available_mem"])
+    rewrite("#mem_active_id", info["mem_active"])
+    rewrite("#mem_inactive_id", info["mem_inactive"])
+    rewrite("#mem_cached_id", info["mem_cached"])
+    rewrite("#mem_buffers_id", info["mem_buffers"])
+    rewrite("#free_swap_id", info["free_swap"])
+    rewrite("#total_swap_id", info["total_swap"])
+    rewrite("#used_swap_id", info["used_swap"])
+    rewrite("#swap_percent_id", info["swap_percent"])
+    rewrite("#sout_id", info["sout"])
+    rewrite("#sin_id", info["sin"])
+    rewrite("#server_uptime_id", info["server_uptime"])
+    rewrite("#server_time_id", info["server_time"])
 }
 
 const update_gauges = (info, gauges) => {

@@ -53,12 +53,11 @@ class ServerInfo(object):
         update dynamic data if it has not updated in 1 second
         """
         now = time.time()
-        if not self._updatetime or now - self._updatetime > 1:
-            self.update_cpu_data()
-            self.update_mem_data()
-            self.update_disk_data()
-            self.update_network_data()
-            self.update_time()
+        self.update_cpu_data()
+        self.update_mem_data()
+        self.update_disk_data()
+        self.update_network_data()
+        self.update_time()
 
     def update_cpu_data(self):
         cpu_percent = psutil.cpu_percent(interval=None)
@@ -71,15 +70,18 @@ class ServerInfo(object):
     def update_mem_data(self):
         mem = psutil.virtual_memory()
         self.data["total_mem"] = bytes2human(mem.total)
-        self.data["avaliabale_mem"] = bytes2human(mem.available)
+        self.data["free_mem"] = bytes2human(mem.free)
+        self.data["available_mem"] = bytes2human(mem.available)
         self.data["used_mem"] = bytes2human(mem.used)
         # shared (Linux, BSD): memory that may be simultaneously accessed by multiple processes.
         self.data["mem_shared"] = bytes2human(mem.shared)
+        # buffers (Linux, BSD): cache for things like file system metadata.
+        self.data["mem_buffers"] = bytes2human(mem.buffers)
         # cached (Linux, BSD): cache for various things.
         self.data["mem_cached"] = bytes2human(mem.cached)
-        # active (UNIX): memory currently in use or very recently used, and so it is in RAM.
+        # Active memory is memory that is being used by a particular process.
         self.data["mem_active"] = bytes2human(mem.active)
-        # inactive (UNIX): memory that is marked as not used.
+        # Inactive memory is memory that was allocated to a process that is no longer running.
         self.data["mem_inactive"] = bytes2human(mem.inactive)
         self.data["mem_percent"] = mem.percent
         swap = psutil.swap_memory()
@@ -87,6 +89,8 @@ class ServerInfo(object):
         self.data["free_swap"] = bytes2human(swap.free)
         self.data["used_swap"] = bytes2human(swap.used)
         self.data["swap_percent"] = swap.percent
+        self.data["sin"] = bytes2human(swap.sin)
+        self.data["sout"] = bytes2human(swap.sout)
 
     def update_disk_data(self):
         disk = psutil.disk_usage('/')
@@ -128,8 +132,8 @@ async def info(request, ws):
     while True:
         info.update()
         await ws.send(json.dumps(info.data))
-        await asyncio.sleep(1)
+        await asyncio.sleep(0.5)
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, workers=4)
+    app.run(host="0.0.0.0", port=8000, workers=2)

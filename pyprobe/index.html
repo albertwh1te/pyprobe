@@ -10,7 +10,7 @@
     <link rel="icon" href="static/probe.png">
 </head>
 
-<body>
+<body class="blue-grey lighten-1">
     <div class="container">
         <div class="card blue-grey lighten-4">
             <div class="flow-text center">Server Status</div>
@@ -36,6 +36,7 @@
                 </div>
             </div>
         </div>
+
         <section id="cpu-info-id">
             <div class="card blue-grey lighten-4">
                 <div class="flow-text center">CPU Information</div>
@@ -116,6 +117,136 @@
                 </div>
         </section>
 
+        <section id="memory-info-id">
+            <div class="card blue-grey lighten-4">
+                <div class="flow-text center">Memory Information</div>
+                <div class="row">
+                    <div class="col s4">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>total physical memory:
+                                <span id="total_mem_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>shared physical memory:
+                                <span id="mem_shared_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+
+                        <div class="card blue-grey lighten-2 ">
+                            <center>available physical memory:
+                                <span id="available_mem_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>total swap:
+                                <span id="total_swap_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>swap used percent:
+                                <span id="swap_percent_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+
+                    </div>
+
+                    <div class="col s4">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>used physical memory:
+                                <span id="used_mem_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>active memory:
+                                <span id="mem_active_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+
+                        <div class="card blue-grey lighten-2 ">
+                            <center>inactive memory:
+                                <span id="mem_inactive_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>used swap:
+                                <span id="used_swap_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>swapped in from disk :
+                                <span id="sin_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col s4">
+                        <div class="card blue-grey lighten-2 ">
+                            <center>free physical memory:
+                                <span id="free_mem_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+
+                        <div class="card blue-grey lighten-2 ">
+                            <center>memory cached:
+                                <span id="mem_cached_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>memory buffers:
+                                <span id="mem_buffers_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>free swap:
+                                <span id="free_swap_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+                        <div class="card blue-grey lighten-2 ">
+                            <center>swapped out from disk :
+                                <span id="sout_id">
+                                    0
+                                </span>
+                            </center>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
         <section id="disk-info-id">
             <div class="card blue-grey lighten-4">
                 <div class="flow-text center">Disk Information</div>
@@ -166,57 +297,10 @@
                         </div>
 
                     </div>
-                </div>
-
-        </section>
-
-        <section id="memory-info-id">
-            <div class="card blue-grey lighten-4">
-                <div class="flow-text center">Memory Information</div>
-                <div class="row">
-                    <div class="col s4">
+                    <div class="col s6">
                         <div class="card blue-grey lighten-2 ">
-                            <center>host:
-                                <span id="host_id">
-                                    0
-                                </span>
-                            </center>
-                        </div>
-                        <div class="card blue-grey lighten-2 ">
-                            <center>hostname:
-                                <span id="hostname_id">
-                                    0
-                                </span>
-                            </center>
-                        </div>
-                    </div>
-                    <div class="col s4">
-                        <div class="card blue-grey lighten-2 ">
-                            <center>disk free :
-                                <span id="disk_free_id">
-                                    0
-                                </span>
-                            </center>
-                        </div>
-                        <div class="card blue-grey lighten-2 ">
-                            <center>disk total :
-                                <span id="disk_total_id">
-                                    0
-                                </span>
-                            </center>
-                        </div>
-                    </div>
-                    <div class="col s4">
-                        <div class="card blue-grey lighten-2 ">
-                            <center>processor :
-                                <span id="processor_id">
-                                    0
-                                </span>
-                            </center>
-                        </div>
-                        <div class="card blue-grey lighten-2 ">
-                            <center>processor number:
-                                <span id="processor_number_id">
+                            <center>server date time :
+                                <span id="server_time_id">
                                     0
                                 </span>
                             </center>
@@ -224,16 +308,17 @@
                     </div>
                     <div class="col s6">
                         <div class="card blue-grey lighten-2 ">
-                            <center>server time : ${info["server_time"]}</center>
+                            <center>server uptime :
+                                <span id="server_uptime_id">
+                                    0
+                                </span>
+                            </center>
                         </div>
                     </div>
-                    <div class="col s6">
-                        <div class="card blue-grey lighten-2 ">
-                            <center>server uptime : ${info["server_uptime"]}</center>
-                        </div>
-                    </div>
+
                 </div>
-            </div>
+
+
         </section>
 
         <footer class="page-footer blue-grey">
