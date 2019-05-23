@@ -6,8 +6,6 @@ Display and monitor your servers statistics
 
 [![pyprobe_demo.gif](https://i.loli.net/2019/03/27/5c9b2c848fea6.gif)](https://i.loli.net/2019/03/27/5c9b2c848fea6.gif)
 
-[online demo](https://status.markwh1te.com)
-
 | **`Usage`** |
 
 ```Bash
